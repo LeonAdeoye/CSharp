@@ -101,6 +101,13 @@ namespace Development
                 }
             }
 
+            Console.WriteLine("\nProjections: apple colours: ");
+            var colours = listOfApples.Select(a => a.Colour);
+            foreach (var colour in colours)
+            {
+                Console.WriteLine(colour);
+            }
+
 
             Console.WriteLine("All done");
         }
