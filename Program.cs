@@ -18,14 +18,89 @@ namespace Development
             // The first part is called the from clause and describes the source
             // child between the from and the in is called the range variable
             var children = from child in list
-                           let fullName =
+                           let fullName = child
                            where (fullName != "Saori")
                            select child.Backwards();
 
-            foreach(string child in children)
+            // LINQ queries defer work as much as possible. No work is done until we start to enumerate with a foreach loop.
+            foreach (string child in children)
             {
                 Console.WriteLine("child: {0} has length: {1}", child, child.Length);
             }
+
+            List<Object> objs = new List<Object>();
+            objs.Add("Horatio");
+            objs.Add(new Int64());
+            objs.Add(new DateTime());
+            objs.Add("Harper");
+
+            // The filter operator Oftype<T> is useful when you have a collection that may contain a mixture of types,
+            // and you only want to look at elements of a specific type.
+            var objTypes = from objType in objs.OfType<String>()
+                           orderby objType descending // Can contain an orderBy clause indicating the order in which you would like to items to emerge from query.
+                           select objType;
+
+            Console.WriteLine("\nSorting in descending order:");
+            foreach (var objType in objTypes)
+            {
+                Console.WriteLine(objType);
+            }
+
+            Console.WriteLine("\nSorting in ascending order:");
+            var sortedasc = objTypes.OrderBy(a => a);
+            foreach (var sorted in sortedasc)
+            {
+                Console.WriteLine(sorted);
+            }
+
+            Console.WriteLine("\nSorting in descending order again:");
+            var sortedesc = sortedasc.OrderByDescending(a => a);
+            foreach (var sorted in sortedesc)
+            {
+                Console.WriteLine(sorted);
+            }
+
+            // Lazily combines two sequences into one.
+            // This is an operator and there is no eqivalent in the query expression syntax.
+            Console.WriteLine("\nConcatenated:");
+            var concatenated = sortedasc.Concat(sortedesc);
+            // Defer concatenation until you iterate through the sequence
+            foreach (var con in concatenated)
+            {
+                Console.WriteLine(con);
+            }
+
+            List<Apple> listOfApples = new List<Apple>();
+            listOfApples.Add(new Apple
+            {
+                Colour = "green",
+                AppleType = "granny smith"
+            });
+
+            listOfApples.Add(new Apple
+            {
+                Colour = "green",
+                AppleType = "granny smith"
+            });
+
+            listOfApples.Add(new Apple
+            {
+                Colour = "red",
+                AppleType = "cocks"
+            });
+
+            var appleGrouping = from app in listOfApples
+                                group app by app.Colour;
+
+            foreach(var colouredApples in appleGrouping)
+            {
+                Console.WriteLine("\n" + colouredApples.Key + " coloured apples: ");
+                foreach(var appleType in colouredApples)
+                {
+                    Console.WriteLine(appleType.AppleType);
+                }
+            }
+
 
             Console.WriteLine("All done");
         }
@@ -45,6 +120,20 @@ namespace Development
             char[] characters = input.ToCharArray();
             Array.Reverse(characters);
             return new string(characters);
+        }
+    }
+
+    class Apple
+    {
+        public String Colour
+        {
+            get;
+            set;
+        }
+        public String AppleType
+        {
+            get;
+            set;
         }
     }
 }
