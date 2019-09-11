@@ -37,7 +37,7 @@ namespace Development
             // The filter operator Oftype<T> is useful when you have a collection that may contain a mixture of types,
             // and you only want to look at elements of a specific type.
             var objTypes = from objType in objs.OfType<String>()
-                           orderby objType descending // Can contain an orderBy clause indicating the order in which you would like to items to emerge from query.
+                           orderby objType descending // Here a query expression contains an orderBy clause indicating the order in which you would like to items to emerge from query.
                            select objType;
 
             Console.WriteLine("\nSorting in descending order:");
@@ -101,6 +101,7 @@ namespace Development
                 }
             }
 
+            // You can use 'projection' lambda expressions with the Select operator. 
             Console.WriteLine("\nProjections: apple colours: ");
             var colours = listOfApples.Select(a => a.Colour);
             foreach (var colour in colours)
