@@ -92,10 +92,10 @@ namespace Development
             var appleGrouping = from app in listOfApples
                                 group app by app.Colour;
 
-            foreach(var colouredApples in appleGrouping)
+            foreach (var colouredApples in appleGrouping)
             {
                 Console.WriteLine("\n" + colouredApples.Key + " coloured apples: ");
-                foreach(var appleType in colouredApples)
+                foreach (var appleType in colouredApples)
                 {
                     Console.WriteLine(appleType.AppleType);
                 }
@@ -109,10 +109,68 @@ namespace Development
                 Console.WriteLine(colour);
             }
 
+            List<CalendarEvent> events = new List<CalendarEvent>
+            {
+                new CalendarEvent
+                {
+                    Title = "Programming at home",
+                    StartTime = new DateTimeOffset(2019, 9, 13, 20, 43, 00, TimeSpan.Zero),
+                    Duration = TimeSpan.FromHours(4)
+
+                },
+                new CalendarEvent
+                {
+                    Title = "Cooking",
+                    StartTime = new DateTimeOffset(2019, 9, 13, 22, 43, 00, TimeSpan.Zero),
+                    Duration = TimeSpan.FromHours(3)
+                },
+                new CalendarEvent
+                {
+                    Title = "Chess game",
+                    StartTime = new DateTimeOffset(2019, 9, 12, 20, 43, 00, TimeSpan.Zero),
+                    Duration = TimeSpan.FromHours(1)
+                },
+                new CalendarEvent
+                {
+                    Title = "Swimming",
+                    StartTime = new DateTimeOffset(2019, 9, 12, 22, 43, 00, TimeSpan.Zero),
+                    Duration = TimeSpan.FromHours(3)
+                }
+
+            };
+
+            // This projection constructs a new anaonymous object for each item.
+            // All we have is the object initialization syntax to populate the various properties.
+            var projected = from ev in events
+                            select new
+                            {
+                                Title = ev.Title,
+                                StartTime = ev.StartTime,
+                                EndTime = ev.StartTime + ev.Duration
+                            };
+
+            // Drop the first item and show the next 2.
+            var taken = projected.Skip(1).Take(2);
+
+            foreach (var item in taken)
+            {
+                Console.WriteLine("{0} event starts {1} and ends at {2}", item.Title, item.StartTime, item.EndTime);
+            }
+
+            DateTimeOffset newEventStart = new DateTimeOffset(2019, 9, 13, 20, 00, 20, 10, TimeSpan.Zero);
+            TimeSpan newEventDuration = TimeSpan.FromHours(20);
+            var overlapsAny = events.Any(ev => CalendarEvent.TimesOverlap(ev.StartTime, ev.Duration, newEventStart, newEventDuration));
+            var overlapsAll = events.All(ev => CalendarEvent.TimesOverlap(ev.StartTime, ev.Duration, newEventStart, newEventDuration));
+            Console.WriteLine("Any overlap exists: {0}, and All overlap exists: {1}", overlapsAny, overlapsAll);
+            Console.WriteLine("Sum hours: {0}", events.Sum(ev => ev.Duration.TotalHours));
+            Console.WriteLine("Max: {0}", events.Max(ev => ev.Duration.TotalHours));
+            Console.WriteLine("Min: {0}", events.Min(ev => ev.Duration.TotalHours));
+            Console.WriteLine("Sum minutes: {0}", events.Aggregate(0.0, (total, ev) => total + ev.Duration.TotalMinutes));
 
             Console.WriteLine("All done");
         }
-    }
+
+    }      
 
     // In order to support LINQ, a feature called exteension methods have been added.
     // These methods bolted onto a type by some other type.
