@@ -154,14 +154,14 @@ namespace Development
 
             foreach (var item in taken)
             {
-                Console.WriteLine("{0} event starts {1} and ends at {2}", item.Title, item.StartTime, item.EndTime);
+                Console.WriteLine("{0} event starts {1} and ends at {2}.", item.Title, item.StartTime, item.EndTime);
             }
 
             DateTimeOffset newEventStart = new DateTimeOffset(2019, 9, 13, 20, 00, 20, 10, TimeSpan.Zero);
             TimeSpan newEventDuration = TimeSpan.FromHours(20);
             var overlapsAny = events.Any(ev => CalendarEvent.TimesOverlap(ev.StartTime, ev.Duration, newEventStart, newEventDuration));
             var overlapsAll = events.All(ev => CalendarEvent.TimesOverlap(ev.StartTime, ev.Duration, newEventStart, newEventDuration));
-            Console.WriteLine("Any overlap exists: {0}, and All overlap exists: {1}", overlapsAny, overlapsAll);
+            Console.WriteLine("Any overlap exists: {0}, and All overlap exists: {1}.", overlapsAny, overlapsAll);
 
             Console.WriteLine("Sum hours: {0}", events.Sum(ev => ev.Duration.TotalHours));
             Console.WriteLine("Max: {0}", events.Max(ev => ev.Duration.TotalHours));
