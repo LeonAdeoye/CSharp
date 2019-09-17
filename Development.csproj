@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalendarEvent.cs" />
+    <Compile Include="CollectionExample.cs" />
+    <Compile Include="DelegateExample.cs" />
+    <Compile Include="LinqExample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
