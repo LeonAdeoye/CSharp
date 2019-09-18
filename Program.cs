@@ -16,12 +16,14 @@ namespace Development
 
             DelegateExample.main();
 
+            StringBuilderExample.main();
+
             Console.WriteLine("All done");
         }
 
     }      
 
-    // In order to support LINQ, a feature called exteension methods have been added.
+    // In order to support LINQ, a feature called extension methods have been added.
     // These methods bolted onto a type by some other type.
     // You can add new methods to a type even if you can't change that type.
     // If the class is added to a namespace and that namespace is addedto a class then any string will have the extension method.

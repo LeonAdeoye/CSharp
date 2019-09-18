@@ -45,10 +45,13 @@
   <ItemGroup>
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="CollectionExample.cs" />
+    <Compile Include="ConstructorExample.cs" />
     <Compile Include="DelegateExample.cs" />
     <Compile Include="LinqExample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringBuilderExample.cs" />
+    <Compile Include="UsingExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
