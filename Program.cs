@@ -18,6 +18,8 @@ namespace Development
 
             StringBuilderExample.main();
 
+            DisposeExample.main();
+
             Console.WriteLine("All done");
         }
 

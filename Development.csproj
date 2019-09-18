@@ -47,6 +47,7 @@
     <Compile Include="CollectionExample.cs" />
     <Compile Include="ConstructorExample.cs" />
     <Compile Include="DelegateExample.cs" />
+    <Compile Include="DisposeExample.cs" />
     <Compile Include="LinqExample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
