@@ -22,7 +22,7 @@ namespace Development
 
             ReferencesExample.main();
 
-            ComparableExample.main();
+            Customer.main();
 
             Console.WriteLine("All done");
         }

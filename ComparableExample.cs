@@ -13,6 +13,11 @@ namespace Development
             this.name = name;
         }
 
+        public override string ToString()
+        {
+            return this.name;
+        }
+
         // IComparable<> interface contains one method: CompareTo().
         // IComparable<T> will be used by most of the new APIs in the .NET landscape.
         // However, some older APIs will use the classic IComparable interface.
@@ -66,23 +71,8 @@ namespace Development
         {
             return left.CompareTo(right) >= 0;
         }
-    }
-
-    class ComparableExample
-    {
-        IList list = new List<Customer>();
-
-        ComparableExample()
-        {
-            list.Add(new Customer("Horatio"));
-            list.Add(new Customer("Harper"));
-            list.Add(new Customer("Saori"));
-            list.Add(new Customer("Leon"));
-        }
-
         public static void main()
         {
-            ComparableExample ce = new ComparableExample();
 
             Customer c1 = new Customer("Horatio");
             Customer c2 = new Customer("Leon");
@@ -90,6 +80,10 @@ namespace Development
             Console.WriteLine("Leon compareTo Horatio: {0}", c2.CompareTo(c1));
             Console.WriteLine("Leon compareTo Leon: {0}", c2.CompareTo(c2));
 
+            Console.WriteLine("{0} < {1}: {2}", c1, c2, c1 < c2);
+            Console.WriteLine("{0} > {1}: {2}", c1, c2, c1 > c2);
+            Console.WriteLine("{0} <= {1}: {2}", c1, c2, c1 <= c2);
+            Console.WriteLine("{0} >= {1}: {2}", c1, c2, c1 >= c2);
         }
     }
 }
