@@ -30,6 +30,7 @@ namespace Development
             return list;
         }
 
+        // The readonly collection does not contain methods or properties for modification.
         public ReadOnlyCollection<String> getListOfNamesUsingReadOnlyCollection()
         {
             return new ReadOnlyCollection<string>(list);
@@ -50,7 +51,8 @@ namespace Development
             Console.WriteLine("After modification: ");
             modifiableList.ForEach(Console.WriteLine);
 
-            // Returns object that implements an interface that does not have any modification methods. 
+            // Returns object that implements an interface that does not have any modification methods.
+            // Using interfaces, you can choose to expose only ther methods and properties you want clients to use.
             var enumerableList = re.getListOfNamesUsingReadonlyInterface();
             // Uses extention method created above.
             enumerableList.ForEach(Console.WriteLine);
