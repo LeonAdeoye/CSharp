@@ -22,6 +22,8 @@ namespace Development
 
             ReferencesExample.main();
 
+            ComparableExample.main();
+
             Console.WriteLine("All done");
         }
 

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="CalendarEvent.cs" />
     <Compile Include="CollectionExample.cs" />
+    <Compile Include="ComparableExample.cs" />
     <Compile Include="ConstructorExample.cs" />
     <Compile Include="DelegateExample.cs" />
     <Compile Include="DisposeExample.cs" />

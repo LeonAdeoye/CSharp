@@ -45,9 +45,12 @@ namespace Development
         public static void main()
         {
             ReferencesExample re = new ReferencesExample();
+
+            // Returns a reference type, caller can access member - gaping hole in your class encapsulation.
             var modifiableList = re.getListOfNamesUsingModifiableReferenceType();
             Console.WriteLine("Before modification: ");
             modifiableList.Add("Saori");
+
             Console.WriteLine("After modification: ");
             modifiableList.ForEach(Console.WriteLine);
 
