@@ -20,6 +20,8 @@ namespace Development
 
             DisposeExample.main();
 
+            ReferencesExample.main();
+
             Console.WriteLine("All done");
         }
 

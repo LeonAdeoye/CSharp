@@ -51,6 +51,7 @@
     <Compile Include="LinqExample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferencesExample.cs" />
     <Compile Include="StringBuilderExample.cs" />
     <Compile Include="UsingExample.cs" />
   </ItemGroup>

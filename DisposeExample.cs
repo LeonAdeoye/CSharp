@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Development
 {
@@ -24,6 +21,10 @@ namespace Development
         private InnerSolarSystem solar;
 
         private bool alreadyDisposed = false;
+
+        public DisposeExample()
+        {
+        }
 
         public void Dispose()
         {
