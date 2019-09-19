@@ -80,7 +80,13 @@ namespace Development
             Console.WriteLine("Leon compareTo Horatio: {0}", c2.CompareTo(c1));
             Console.WriteLine("Leon compareTo Leon: {0}", c2.CompareTo(c2));
 
-            Console.WriteLine("{0} < {1}: {2}", c1, c2, c1 < c2);
+            // The overload of Console.WriteLine takes an array of System.Object references.
+            // ints are values types and must be boxed so that they can be passed to the overload of the WriteLine method.
+            // The first rule to avoid boxing: watch for implicit conversion to System.Object.
+            // Another common inadverted implicit conversion of a value type to System.Object is when you place the value type in .NET 1.x collections.
+            // Istead use generic collections. Be on the lookout for other constructs that implicitly convert values types to System.Object.
+            Console.WriteLine("{0} < {1}: {2}", c1.ToString(), c2.ToString(), (c1 < c2).ToString());
+            // Boxing and will occur in all three calls below.
             Console.WriteLine("{0} > {1}: {2}", c1, c2, c1 > c2);
             Console.WriteLine("{0} <= {1}: {2}", c1, c2, c1 <= c2);
             Console.WriteLine("{0} >= {1}: {2}", c1, c2, c1 >= c2);
