@@ -4,18 +4,23 @@ using System.Collections;
 
 namespace Development
 {
-    class Customer : IComparable<Customer>, IComparable, IComparer<Customer>
+    class Customer : IComparable<Customer>, IComparable
     {
-        private readonly string name;
         
         public Customer(string name)
         {
-            this.name = name;
+            Name = name;
+        }
+
+        public string Name
+        {
+            get;
+            private set;
         }
 
         public override string ToString()
         {
-            return this.name;
+            return Name;
         }
 
         // IComparable<> interface contains one method: CompareTo().
@@ -25,7 +30,7 @@ namespace Development
         #region IComparable<Customer> members
         public int CompareTo(Customer other)
         {
-            return this.name.CompareTo(other.name);
+            return this.Name.CompareTo(other.Name);
         }
         #endregion
 
@@ -42,12 +47,6 @@ namespace Development
         }
         #endregion
 
-        #region IComparer<Customer> members
-        int IComparer<Customer>.Compare(Customer x, Customer y)
-        {
-            return x.name.Length.CompareTo(y.name.Length);
-        }
-        #endregion
 
         // You can overload the standard relational operators.
         // They should make use of the type safe CompareTo method.
@@ -90,6 +89,22 @@ namespace Development
             Console.WriteLine("{0} > {1}: {2}", c1, c2, c1 > c2);
             Console.WriteLine("{0} <= {1}: {2}", c1, c2, c1 <= c2);
             Console.WriteLine("{0} >= {1}: {2}", c1, c2, c1 >= c2);
+
+            Customer[] array = new Customer[5];
+            array[0] = c1;
+            array[1] = c2;
+            array[2] = new Customer("Chloe");
+            array[3] = new Customer("Ethan");
+            array[4] = new Customer("Yuko");
+            Array.Sort(array);
+
+            Console.WriteLine("Sorted array: ");
+            array.ForEach(Console.Write);
+
+            Console.WriteLine("\nSorted array using string length comparer lambda expressionn: ");
+            Array.Sort(array, (x,y) => x.Name.Length.CompareTo(y.Name.Length));
+            array.ForEach(Console.Write);
+
         }
     }
 }
