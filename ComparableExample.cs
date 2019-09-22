@@ -4,9 +4,33 @@ using System.Collections;
 
 namespace Development
 {
-    class Customer : IComparable<Customer>, IComparable
+    public class CustomerComparer : IComparer<Customer>, IComparer
     {
-        
+        // If Customer is not declared public then this methd won't be able access it. 
+        public int Compare(Customer x, Customer y)
+        {
+            // Reverse sort if multiplied by -1.
+            return x.Name.Length.CompareTo(y.Name.Length) * -1;
+        }
+
+        public int Compare(Object xo, object yo)
+        {
+            Customer x = null, y = null;
+
+            if (xo is Customer)
+                x = (Customer) xo;
+
+            if (yo is Customer)
+                y = (Customer)yo;
+
+            // Reverse sort if multiplied by -1.
+            return x.Name.Length.CompareTo(y.Name.Length) * -1;
+        }
+    }
+
+
+    public class Customer : IComparable<Customer>, IComparable
+    {
         public Customer(string name)
         {
             Name = name;
@@ -90,21 +114,26 @@ namespace Development
             Console.WriteLine("{0} <= {1}: {2}", c1, c2, c1 <= c2);
             Console.WriteLine("{0} >= {1}: {2}", c1, c2, c1 >= c2);
 
-            Customer[] array = new Customer[5];
-            array[0] = c1;
-            array[1] = c2;
-            array[2] = new Customer("Chloe");
-            array[3] = new Customer("Ethan");
-            array[4] = new Customer("Yuko");
-            Array.Sort(array);
+            Customer[] array = new Customer[]
+            {
+                c1,
+                c2,
+                new Customer("Chloe"),
+                new Customer("Ethan"),
+                new Customer("Yuko")
+            };
 
-            Console.WriteLine("Sorted array: ");
+            Console.WriteLine("Normal Sorted array: ");
+            Array.Sort(array);
             array.ForEach(Console.Write);
 
             Console.WriteLine("\nSorted array using string length comparer lambda expressionn: ");
             Array.Sort(array, (x,y) => x.Name.Length.CompareTo(y.Name.Length));
             array.ForEach(Console.Write);
 
+            Console.WriteLine("\nSorted array using CustomerCustomer class which implements iComparer interface and does reverse length sort:");
+            Array.Sort(array, new CustomerComparer());
+            array.ForEach(Console.Write);
         }
     }
 }
